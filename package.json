@@ -4,7 +4,7 @@
   "description": "An image scraper for the web version of Tinder",
   "main": "index.js",
   "scripts": {
-    "start": "node ./server/server.js",
+    "start": "node ./index.js",
     "start-watch": "nodemon ./index.js",
     "compile": "webpack",
     "compile-watch": "webpack --watch",
@@ -42,6 +42,7 @@
     "react-dom": "^16.2.0",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
+    "selenium-webdriver": "^3.6.0",
     "sequelize": "^4.23.2",
     "sqlite3": "^3.1.13",
     "webpack": "^3.8.1"
