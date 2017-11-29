@@ -25,12 +25,17 @@ driver.get('http://www.tinder.com/')
             .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[2]/div/div/main/div/button')).click())
               .then(driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[2]/div/div/div[1]/div/div/div[4]/button[1]')), 10000))
                 .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[2]/div/div/div[1]/div/div/div[4]/button[1]')).click())
-                  .then(driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[2]/div/div/div[1]/div/div/div[4]/button[1]')), 10000))
-                    .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[2]/div/div/div[1]/div/div/div[4]/button[1]')).click());
+                  .then(driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[2]/div/div/div[1]/div/div/div[4]/button[1]')), 50000))
+                    .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[2]/div/div/div[1]/div/div/div[4]/button[1]')).click())
+                      .then(() => { 
+                        for (var i = 0; i < 1000; i++) {
+                          setInterval(() => {
+                            driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[4]')), 100000)
+                            .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[4]')).click())
+                              .then(driver.actions().sendKeys(webdriver.Key.ESCAPE).perform());
+                          }, 3000);
+                        }
+                      });
 
-  
-                
-
-    
 
 // driver.quit();
