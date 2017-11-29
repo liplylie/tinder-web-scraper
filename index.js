@@ -14,6 +14,11 @@ var driver = new webdriver.Builder()
 driver.get('http://www.facebook.com/');
 driver.findElement(By.name('email')).sendKeys(secret.email);
 driver.findElement(By.name('pass')).sendKeys(secret.password);
+driver.wait(until.titleIs('Facebook - Log In or Sign Up'), 10000);
 driver.findElement(By.id('u_0_2')).click();
-driver.wait(until.titleIs('Facebook'), 1000);
+driver.wait(until.titleIs('Facebook'), 10000);
+driver.get('http://www.tinder.com/');
+driver.wait(until.titleIs('Tinder | Swipe. Match. Chat.'), 50000);
+driver.findElement(By.linkText('Log in with Facebook')).click();
+
 driver.quit();
