@@ -1,0 +1,49 @@
+{
+  "name": "tinder-web-scraper",
+  "version": "1.0.0",
+  "description": "An image scraper for the web version of Tinder",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/server.js",
+    "start-watch": "nodemon ./index.js",
+    "compile": "webpack",
+    "compile-watch": "webpack --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaafarskafi1/tinder-web-scraper.git"
+  },
+  "author": "Jeff Skafi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaafarskafi1/tinder-web-scraper/issues"
+  },
+  "homepage": "https://github.com/jaafarskafi1/tinder-web-scraper#readme",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "celery-man": "0.0.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "fs-extra": "^4.0.2",
+    "nodemon": "^1.12.1",
+    "path": "^0.12.7",
+    "pg": "^7.4.0",
+    "querystring": "^0.2.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "sequelize": "^4.23.2",
+    "sqlite3": "^3.1.13",
+    "webpack": "^3.8.1"
+  }
+}
