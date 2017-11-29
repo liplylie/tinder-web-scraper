@@ -29,16 +29,16 @@ driver.get('http://www.tinder.com/')
                 .then(driver.wait(until.elementLocated(By.xpath('//div[contains(@class, "onboarding__buttons Bgc(#fff)--s")][button][1]')), 10000))
                 .then(driver.wait(until.elementLocated(By.xpath('//div[contains(@class, "onboarding__buttons Bgc(#fff)--s")][button][1]')), 10000))
                 .then(driver.wait(until.elementLocated(By.xpath('//div[contains(@class, "onboarding__buttons Bgc(#fff)--s")][button][1]')), 10000))
-                
-                    .then(driver.findElement(By.xpath('//div[contains(@class, "onboarding__buttons Bgc(#fff)--s")][button][1]')).click())
-                      .then(() => { 
-                        for (var i = 0; i < 1000; i++) {
-                            driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]')), 10000)
-                            // .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[4]')).click())
-                            .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[2]')).click())
-                              .then(driver.actions().sendKeys(webdriver.Key.ESCAPE).perform());
-                        }
-                      });
-
+                  .then(driver.findElement(By.xpath('//div[contains(@class, "onboarding__buttons Bgc(#fff)--s")][button][1]')).click())
+                    .then(() => { 
+                      /*adjust iterations, how many profiles you'd like to swipe. it's set to 1000 by default*/
+                      for (var i = 0; i < 1000; i++) {
+                        driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]')), 10000)
+                        /*currently, the app swipes left. uncomment this line to swipe right and comment out the line after it to swipe left*/
+                        // .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[4]')).click())
+                        .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[2]')).click())
+                          .then(driver.actions().sendKeys(webdriver.Key.ESCAPE).perform());
+                      }
+                    });
 
 // driver.quit();
