@@ -37,7 +37,6 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
                         .then(val => {
                           val = val.substring(5, val.length - 2)
                           console.log(val, 'val')
-                          console.log(typeof val, 'type')
                           //driver.get(val)
                         })
                       //driver.get(image)
