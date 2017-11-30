@@ -27,11 +27,26 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
               //start swiping
               .then(() => { 
                 /* adjust iterations, how many profiles you'd like to swipe. it's set to 1000 by default */
-                for (var i = 0; i < 1000; i++) {
-                  driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]')), 120000)
-                    .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[4]')).click())
+                for (var i = 0; i < 2; i++) {
+                  driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]')), 20000)
+                    // .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[4]')).click())
                     /* line above this comment swipes right. line below swipes left. Comment/uncomment them per direction you'd like to swipe */
-                    // .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[2]')).click())
+                    .then(() => {
+                      let image = driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[1]'))
+                      image.getCssValue('background-image')
+                        .then(val => {
+                          val = val.substring(5, val.length - 2)
+                          console.log(val, 'val')
+                          //driver.get(val)
+                        })
+                      //driver.get(image)
+                      //
+                      // for other's pic:
+                      // driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[1]')).getCssValue("style")
+                      // for your own pic:
+                      //driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[1]/img')).getAttribute("src")
+                    })
+                    .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[2]')).click())
                       .then(driver.actions().sendKeys(webdriver.Key.ESCAPE).perform());
                   console.log(i + ' profiles swiped');
                 }
