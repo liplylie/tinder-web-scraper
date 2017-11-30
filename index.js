@@ -48,6 +48,7 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
                     })
                     .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[2]')).click())
                       .then(driver.actions().sendKeys(webdriver.Key.ESCAPE).perform());
+                  console.log(i + ' profiles swiped');
                 }
               });
 
