@@ -38,19 +38,16 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
                     .then(() => {
                         driver.findElements(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div[1]/a/div/div[1]/div/div'))                    
                           .then((elements) => {
-                            console.log('there are ', elements.length, ' images for this user');
-                              elements[0].findElements(By.css('.profileCard__slider__imgHelper'))
-                                .then((elements) => {
-                                  elements.forEach((element) => {
-                                    element.findElements(By.css('.profileCard__slider__img'))
-                                      .then((elements) => {
-                                         elements[0].getAttribute('src')
-                                           .then((src) => {
-                                             console.log('src is: ', src);
-                                           });
-                                      });
-                                  })
+                            for (var i = 1; i < elements.length-1; i++) {
+                              driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div[1]/a/div/div[1]/div' + '/div[' + i + ']/div/img')), 20000)
+                                .then((element) => {
+                                  element.getAttribute('src')
+                                    .then((src) => {
+                                      console.log('src is: ', src);
+                                    })
+                                      .then(driver.actions().sendKeys(webdriver.Key.SPACE).perform());
                                 });
+                            }
                             });
                       })
                         .then(driver.actions().sendKeys(webdriver.Key.ARROW_DOWN).perform())
