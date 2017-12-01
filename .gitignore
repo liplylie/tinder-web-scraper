@@ -58,3 +58,6 @@ typings/
 # dotenv environment variables file
 .env
 secret.json
+
+# folder for saved images
+images
