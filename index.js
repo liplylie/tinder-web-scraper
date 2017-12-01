@@ -45,7 +45,7 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
                                   element.getAttribute('src')
                                     .then((src) => {
                                       console.log('src is: ', src);
-                                      let file = fs.createWriteStream(src.split('').join('').slice(src.length-10, src.length));
+                                      let file = fs.createWriteStream(__dirname + '/images/' + src.split('').join('').slice(src.length-10, src.length));
                                       let request = https.get(src, function(response) {
                                         response.pipe(file);
                                       });
