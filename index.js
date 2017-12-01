@@ -28,7 +28,7 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
               //start swiping
               .then(() => { 
                 /* adjust iterations, how many profiles you'd like to swipe. it's set to 100 by default */
-                for (var i = 0; i < 2; i++) {
+                for (var i = 0; i < 100; i++) {
                   driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]')), 20000)
                     // .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[4]')).click())
                     /* line above this comment swipes right. line below swipes left. Comment/uncomment them per direction you'd like to swipe */
