@@ -8,6 +8,7 @@ const https = require('https');
 const fs = require('fs');
 const domainName = 'http://localhost:3000'
 let urls = [];
+let faceIds = [];
 let webdriver = require('selenium-webdriver'),
 By = webdriver.By,
 until = webdriver.until;
@@ -53,6 +54,7 @@ driver.get('http://www.facebook.com/')
                       // for your own pic:
                       //driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[1]/img')).getAttribute("src")
                     })
+
                      //open profile
                       .then(driver.actions().sendKeys(webdriver.Key.ARROW_UP).perform())
                       //wait till profile card fully opens
@@ -86,6 +88,7 @@ driver.get('http://www.facebook.com/')
 
                                   /* swipe left. comment out line below if swiping right */
                                 .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[2]')).click())
+
 
                                   /*this makes sure we always exit cards, especially if swiping right
                                   and profile gets a match
