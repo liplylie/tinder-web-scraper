@@ -41,10 +41,14 @@ driver.get('http://www.facebook.com/')
                     /* line above this comment swipes right. line below swipes left. Comment/uncomment them per direction you'd like to swipe */
                     .then(() => {
                       let image = driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[1]'))
+                      let userName = driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]/div[1]/div/span[1]')).getAttribute('innerHTML')
+                      let userAge = driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]/div[1]/div/span[2]')).getAttribute('innerHTML')
                       image.getCssValue('background-image')
                         .then(val => {
                           val = val.substring(5, val.length - 2)
                           console.log(val, 'val')
+                          console.log(userName.value_, 'username')
+                          console.log(userAge.value_.substring(2), 'userAge')
                           if (val.length > 5){
                             urls.push(val)
                           }
@@ -54,7 +58,6 @@ driver.get('http://www.facebook.com/')
                       // for your own pic:
                       //driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[1]/img')).getAttribute("src")
                     })
-
                      //open profile
                       .then(driver.actions().sendKeys(webdriver.Key.ARROW_UP).perform())
                       //wait till profile card fully opens
