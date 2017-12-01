@@ -1,8 +1,10 @@
 const express = require('express');
+const axios = require('axios')
 const path = require('path');
 const parser = require('body-parser');
 const secret = require('./secret.json');
-
+const domainName = 'http://localhost:3000'
+let urls = [];
 let webdriver = require('selenium-webdriver'),
 By = webdriver.By,
 until = webdriver.until;
@@ -27,7 +29,7 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
               //start swiping
               .then(() => { 
                 /* adjust iterations, how many profiles you'd like to swipe. it's set to 1000 by default */
-                for (var i = 0; i < 2; i++) {
+                for (var i = 0; i < 5; i++) {
                   driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]')), 20000)
                     // .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[4]')).click())
                     /* line above this comment swipes right. line below swipes left. Comment/uncomment them per direction you'd like to swipe */
@@ -37,6 +39,10 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
                         .then(val => {
                           val = val.substring(5, val.length - 2)
                           console.log(val, 'val')
+                          if (val.length > 5){
+                            urls.push(val)
+                          }
+                          
                           //driver.get(val)
                         })
                       //driver.get(image)
@@ -49,6 +55,24 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
                     .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[2]')).click())
                       .then(driver.actions().sendKeys(webdriver.Key.ESCAPE).perform());
                 }
-              });
+              }).then(()=>{
+                  // console.log(urls,'urls')
+                  for ( let j = 0; j < urls.length; j++){
+                    axios.post(`${domainName}/api/postUrl`, {
+                    url: urls[j]
+                      })
+                      .then(()=> {
+                        console.log('post sent')
+                      })
+                      .catch((err)=> {
+                        console.log(err, 'post failed')
+                      })
+                  }
+                  
+                })
+              
+
+
+module.exports = urls
 
 // driver.quit();
