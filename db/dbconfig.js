@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
+const secret = require('../secret.json')
 
-let dburl = "postgres://olvzbanf:b6QDpwCX5o840h5HQANO0tLCfQ24hdap@baasu.db.elephantsql.com:5432/olvzbanf"
+let dburl = secret.dburl
 
 const db = new Sequelize(dburl, {dialect: 'postgres'});
 
