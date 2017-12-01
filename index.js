@@ -3,6 +3,8 @@ const path = require('path');
 const parser = require('body-parser');
 const secret = require('./secret.json');
 const promise = require('selenium-webdriver').promise;
+const https = require('https');
+const fs = require('fs');
 
 let webdriver = require('selenium-webdriver'),
 By = webdriver.By,
@@ -32,7 +34,6 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
                   driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]')), 20000)
                     // .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[4]')).click())
                     /* line above this comment swipes right. line below swipes left. Comment/uncomment them per direction you'd like to swipe */
-
                     .then(driver.actions().sendKeys(webdriver.Key.ARROW_UP).perform())
                     .then(driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div[1]/a/div/div[1]/div')), 20000))
                     .then(() => {
@@ -44,6 +45,10 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
                                   element.getAttribute('src')
                                     .then((src) => {
                                       console.log('src is: ', src);
+                                      let file = fs.createWriteStream(src.split('').join('').slice(src.length-10, src.length));
+                                      let request = https.get(src, function(response) {
+                                        response.pipe(file);
+                                      });
                                     })
                                       .then(driver.actions().sendKeys(webdriver.Key.SPACE).perform());
                                 });
