@@ -25,22 +25,22 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
     .then(driver.findElement(By.id('loginbutton')).click())
       //log in to Tinder
       .then(driver.get('http://www.tinder.com/'))
-        .then(driver.wait(until.elementLocated(By.xpath('//*[@id="modal-manager"]/div/div/div[2]/div[1]/div/div[3]/button[1]')), 20000))
+        .then(driver.wait(until.elementLocated(By.xpath('//*[@id="modal-manager"]/div/div/div[2]/div[1]/div/div[3]/button[1]')), 120000))
             .then(driver.findElement(By.xpath('//*[@id="modal-manager"]/div/div/div[2]/div[1]/div/div[3]/button[1]')).click())
               //start swiping
               .then(() => { 
                 /* adjust iterations, how many profiles you'd like to swipe. it's set to 100 by default */
-                for (var i = 0; i < 100; i++) {
-                  driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]')), 20000)
+                for (var i = 0; i < 45000; i++) {
+                  driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]')), 120000)
                     // .then(driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[2]/button[4]')).click())
                     /* line above this comment swipes right. line below swipes left. Comment/uncomment them per direction you'd like to swipe */
                     .then(driver.actions().sendKeys(webdriver.Key.ARROW_UP).perform())
-                    .then(driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div[1]/a/div/div[1]/div')), 20000))
+                    .then(driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div[1]/a/div/div[1]/div')), 120000))
                     .then(() => {
                         driver.findElements(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div[1]/a/div/div[1]/div/div'))                    
                           .then((elements) => {
                             for (var i = 1; i < elements.length; i++) {
-                              driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div[1]/a/div/div[1]/div' + '/div[' + i + ']/div/img')), 20000)
+                              driver.wait(until.elementLocated(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div[1]/a/div/div[1]/div' + '/div[' + i + ']/div/img')), 120000)
                                 .then((element) => {
                                   element.getAttribute('src')
                                     .then((src) => {
