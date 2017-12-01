@@ -38,10 +38,14 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
                     /* line above this comment swipes right. line below swipes left. Comment/uncomment them per direction you'd like to swipe */
                     .then(() => {
                       let image = driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[1]'))
+                      let userName = driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]/div[1]/div/span[1]')).getAttribute('innerHTML')
+                      let userAge = driver.findElement(By.xpath('//*[@id="content"]/div/span/div/div[1]/div/main/div/div/div/div[1]/div[1]/div/div[3]/div[5]/div[1]/div/span[2]')).getAttribute('innerHTML')
                       image.getCssValue('background-image')
                         .then(val => {
                           val = val.substring(5, val.length - 2)
                           console.log(val, 'val')
+                          console.log(userName.value_, 'username')
+                          console.log(userAge.value_.substring(2), 'userAge')
                           if (val.length > 5){
                             urls.push(val)
                           }
@@ -73,28 +77,28 @@ driver.findElement(By.name('email')).sendKeys(secret.email)
                     })
                   }
                 })
-                .then(()=>{
-                  // face detect - get face id
-                  let dataDetect = {
-                    "url": dummyFace,
-                    "returnFaceId": "true",
-                    "returnFaceLandmarks": "false"
-                  }
-                  axios.post("https://westus.api.cognitive.microsoft.com/face/v1.0/detect?", dataDetect, {
-                    headers: {
-                      "Content-Type": "application/json",
-                      "Ocp-Apim-Subscription-Key": secret.Key1
-                    }
-                  })
-                  .then(function({data}) {
-                      console.log("data from detect", data);
-                      faceIds.push(data)
-                      console.log(faceIds, 'faceIds')
-                  })
-                  .catch(function(err) {
-                      console.log("error from detect", err);
-                  });
-                })
+                // .then(()=>{
+                //   // face detect - get face id
+                //   let dataDetect = {
+                //     "url": dummyFace,
+                //     "returnFaceId": "true",
+                //     "returnFaceLandmarks": "false"
+                //   }
+                //   axios.post("https://westus.api.cognitive.microsoft.com/face/v1.0/detect?", dataDetect, {
+                //     headers: {
+                //       "Content-Type": "application/json",
+                //       "Ocp-Apim-Subscription-Key": secret.Key1
+                //     }
+                //   })
+                //   .then(function({data}) {
+                //       console.log("data from detect", data);
+                //       faceIds.push(data)
+                //       console.log(faceIds, 'faceIds')
+                //   })
+                //   .catch(function(err) {
+                //       console.log("error from detect", err);
+                //   });
+                // })
                 // .then(()=>{
                 //   // face verify - take two faces and compare them
                 //   let dataVerify = {
