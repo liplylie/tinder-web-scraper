@@ -1,8 +1,8 @@
 ### Tinder Scraper for the Desktop Web Version of Tinder
 
-##### Disclaimer: I wrote this script just for research purposes. Tinder strictly prohibits using automated software for data harvesting. Use at your own risk.
+##### Disclaimer: I wrote this script just for research purposes. Tinder strictly prohibits using automated software for data harvesting, and Facebook strictly prohibits creating dummy accounts for such purposes as well. Use at your own risk.
 
-##### Intructions
+##### Intructions:
 
 1. Clone the repo.
 2. Create a dummy Facebook account and log into Tinder only once.
