@@ -9,13 +9,15 @@ module.exports = {
 	},
 
 	postUrl: function(req,res){
-		console.log(req.body.url, "post res")
+		console.log(req.body, "post res")
 		urls.create({
-        url: req.body.url
+        url: req.body.url,
+        userName: req.body.userName,
+        userAge: req.body.userAge
     }).then(function(data) {
        	console.log(data, "post data")
-        res.status(200).send(data)
+        res.status(200).send(JSON.stringify(data))
 	})
-	.catch(()=>{console.log("postUrl failed")})
+	.catch((err)=>{console.log(err,"postUrl failed")})
 	}
 }
